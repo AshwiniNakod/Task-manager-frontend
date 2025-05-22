@@ -8,8 +8,6 @@ import {
   TextField,
   Typography,
   Box,
-  MenuItem,
-  Menu,
   Radio,
   FormControlLabel,
   RadioGroup,
@@ -20,7 +18,6 @@ import { API } from '../global';
 function EditForm() {
      const navigate = useNavigate();
   const { id } = useParams(); // assuming route like /edit-task/:taskId
-console.log(id)
   const [task, setTask] = useState({
     title: "",
     description: "",
@@ -35,9 +32,8 @@ console.log(id)
         const res = await axios.get(`${API}/tasks/getTask/${id}`, {
           headers: { Authorization: `Bearer ${token}` },
         });
-        console.log(res.data.message)
+       
         setTask(res.data.message);   
-        console.log(res)     // adjust if your API response differs
         setOriginalTask(res.data.message);
       } catch (err) {
         toast.error("Failed to load task data");

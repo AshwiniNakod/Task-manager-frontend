@@ -20,14 +20,11 @@ function Login() {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      console.log(formData)
-      console.log(API)
       const res = await axios.post(`${API}/user/login`, formData);
        localStorage.setItem('token', res.data.JWTtoken);
       localStorage.setItem('username',res.data.username)
-      console.log("res",res)
       toast.success("Login successful!");
-      console.log('/dashboard')
+      // console.log('/dashboard')
       navigate("/dashboard");
     } catch (err) {
       console.log(err)

@@ -43,7 +43,7 @@ function TaskForm() {
           headers: { Authorization: `Bearer ${token}` },
         }
       );
-      console.log(task)
+      // console.log(task)
       toast.success(res.data.message);
       //   console.log('Response:', res.data.message);
       setTask({ title: "", description: "", status: "" });

@@ -68,7 +68,6 @@ function Registration() {
            console.log(err)
            toast.error(err.response?.data?.message || "Registration failed.");
          }
-            console.log("Registered user:", formData);
 
      
     } else {

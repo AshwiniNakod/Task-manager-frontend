@@ -6,7 +6,6 @@ import {
   Grid,
   MenuItem,
   Pagination,
-  Select,
   TextField,
   Typography,
 } from "@mui/material";
@@ -27,7 +26,6 @@ function TaskList() {
 const filteredTasks = tasks.filter((task)=>{
   return statusFilter === 'All'? tasks : task.status === statusFilter
 })
-  console.log("filteredTasks:",filteredTasks)
   const fetchTasks = async () => {
     try {
       const token = localStorage.getItem("token");
@@ -38,12 +36,12 @@ const filteredTasks = tasks.filter((task)=>{
           headers: { Authorization: `Bearer ${token}` },
         }
       );
-      console.log(res);
+      // console.log(res);
       setTasks(res.data.message);
       setTotalPages(res.data.totalPages);
     } catch (err) {
-      console.error(err);
-      console.log(err.response.data.message);
+      // console.error(err);
+      // console.log(err.response.data.message);
       if (
         err.response &&
         err.response.data &&
@@ -53,9 +51,6 @@ const filteredTasks = tasks.filter((task)=>{
       }
     }
   };
-  console.log("tasks",tasks)
-  console.log("filteredTasks",filteredTasks)
-  //   const filteredTasks =
 
   useEffect(() => {
     fetchTasks();
@@ -63,7 +58,6 @@ const filteredTasks = tasks.filter((task)=>{
 
   const handleDelete = async (taskId) => {
   try {
-    console.log(taskId)
     const token = localStorage.getItem("token");
     await axios.delete(`${API}/tasks/deleteTask/${taskId}`, {
       headers: { Authorization: `Bearer ${token}` },
@@ -121,13 +115,8 @@ const filteredTasks = tasks.filter((task)=>{
                     <Typography variant="h6">{task.title}</Typography>
                     <Typography>{task.description}</Typography>
                     <Typography>Status: {task.status}</Typography>
-                      {/* <Typography><button>DELETE</button></Typography>
-                       */}
-                          {/* <Grid size={8}> */}
                            <Button  size="small" onClick={()=>handleDelete(task._id)}><DeleteIcon /></Button>  
                            <Button size="small" onClick={()=>navigate(`/editForm/${task._id}`)}> <EditIcon /></Button>   
-          {/* <DeleteForeverIcon/> */}
-        {/* </Grid> */}
                   </CardContent>
                 </Card>
               </Grid>
