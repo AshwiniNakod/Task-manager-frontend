@@ -16,6 +16,7 @@ import EditIcon from '@mui/icons-material/Edit';
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { API } from "../global";
 
 function TaskList() {
   const [tasks, setTasks] = useState([]);
@@ -32,7 +33,7 @@ const filteredTasks = tasks.filter((task)=>{
       const token = localStorage.getItem("token");
 
       const res = await axios.get(
-        `http://localhost:8000/api/tasks/getAllLoggedInUserTask?page=${page}&limit=3`,
+        `${API}/tasks/getAllLoggedInUserTask?page=${page}&limit=3`,
         {
           headers: { Authorization: `Bearer ${token}` },
         }
@@ -64,7 +65,7 @@ const filteredTasks = tasks.filter((task)=>{
   try {
     console.log(taskId)
     const token = localStorage.getItem("token");
-    await axios.delete(`http://localhost:8000/api/tasks/deleteTask/${taskId}`, {
+    await axios.delete(`${API}/tasks/deleteTask/${taskId}`, {
       headers: { Authorization: `Bearer ${token}` },
     });
     // Re-fetch tasks after deletion

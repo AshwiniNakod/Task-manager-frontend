@@ -11,6 +11,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { API } from "../global";
 
 function Registration() {
    const navigate = useNavigate();
@@ -53,7 +54,7 @@ function Registration() {
 
     if (Object.keys(formErrors).length === 0) {
      try {
-           const res = await axios.post(`http://localhost:8000/api/user/createUser`, formData);
+           const res = await axios.post(`${API}/user/createUser`, formData);
            toast.success("Registration successful!");
             setFormData({
         username: "",

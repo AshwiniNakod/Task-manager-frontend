@@ -4,6 +4,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { API } from '../global';
 
 function Login() {
    const navigate = useNavigate();
@@ -20,7 +21,8 @@ function Login() {
     e.preventDefault();
     try {
       console.log(formData)
-      const res = await axios.post(`http://localhost:8000/api/user/login`, formData);
+      console.log(API)
+      const res = await axios.post(`${API}/user/login`, formData);
        localStorage.setItem('token', res.data.JWTtoken);
       localStorage.setItem('username',res.data.username)
       console.log("res",res)

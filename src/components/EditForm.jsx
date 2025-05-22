@@ -16,6 +16,7 @@ import {
   FormLabel,
 } from "@mui/material";
 import { toast } from "react-toastify";
+import { API } from '../global';
 function EditForm() {
      const navigate = useNavigate();
   const { id } = useParams(); // assuming route like /edit-task/:taskId
@@ -31,7 +32,7 @@ console.log(id)
     const fetchTask = async () => {
       try {
         const token = localStorage.getItem("token");
-        const res = await axios.get(`http://localhost:8000/api/tasks/getTask/${id}`, {
+        const res = await axios.get(`${API}/tasks/getTask/${id}`, {
           headers: { Authorization: `Bearer ${token}` },
         });
         console.log(res.data.message)
@@ -60,7 +61,7 @@ console.log(id)
     try {
       const token = localStorage.getItem("token");
       const res = await axios.put(
-        `http://localhost:8000/api/tasks/updateTask/${id}`,
+        `${API}/tasks/updateTask/${id}`,
         task,
         {
           headers: { Authorization: `Bearer ${token}` },

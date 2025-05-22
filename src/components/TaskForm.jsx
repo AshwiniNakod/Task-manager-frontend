@@ -16,6 +16,7 @@ import axios from "axios";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import { API } from "../global";
 
 function TaskForm() {
   const navigate = useNavigate();
@@ -36,7 +37,7 @@ function TaskForm() {
     try {
       const token = localStorage.getItem("token");
       const res = await axios.post(
-        "http://localhost:8000/api/tasks/addTask",
+        `${API}/tasks/addTask`,
         task,
         {
           headers: { Authorization: `Bearer ${token}` },
